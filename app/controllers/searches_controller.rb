@@ -13,22 +13,27 @@ class SearchesController < ApplicationController
         　if method == "perfect" #完全一致なら
         　  User.where(name: content)
         　elsif method == forward  #前方一致なら
-        　  
+        　  User.where("name LIKE?","#{content}%")
         　elsif method == backward #後方一致なら
-        　
-        　else #部分一致なら
+        　  User.where("name LIKE?","%#{content}")
+        　elsif method = "partial" #部分一致なら
         　 User.where("name LIKE ?", "%"+content+"%")
+        　else
+        　 User.all
         　end
         　
         elsif model == "book" #選択したモデルがBookの場合
+        
           if method == "perfect" #完全一致なら
             Book.where(title: content)
           elsif method == forward  #前方一致なら
-            
+            User.where("name LIKE?","#{content}%")
           elsif method == backward #後方一致なら
-            
-          else #部分一致なら
-             Book.where("title LIKE ?", "%"+content+"%")
+            User.where("name LIKE?","%#{content}")
+          elsif method = "partial" #部分一致なら
+            Book.where("title LIKE ?", "%"+content+"%")
+          else 
+            Book.all
           end
 
         end
