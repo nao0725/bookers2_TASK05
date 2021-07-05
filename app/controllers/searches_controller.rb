@@ -28,9 +28,9 @@ class SearchesController < ApplicationController
         if method == "perfect" #完全一致なら
          Book.where(title: content)
         elsif method == "forward"  #前方一致なら
-          Book.where("name LIKE?","#{content}%")
+          Book.where("title LIKE?","#{content}%")
         elsif method == "backward" #後方一致なら
-          Book.where("name LIKE?","%#{content}")
+          Book.where("title LIKE?","%#{content}")
         elsif method == "partial" #部分一致なら
           Book.where("title LIKE ?", "%"+content+"%")
         else 
