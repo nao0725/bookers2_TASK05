@@ -1,0 +1,19 @@
+<% if @model == "user" %>
+    <h3>Users serch for "<%= @content %>"</h3>
+        <%= render "users/users_serch", users: @records %>
+<% else @model == "books" %>
+    <h3>Books serch for "<%= @content%>"</h3>
+        <%= render "books/books_serch", books: @records %>
+<% end %>
+    
+
+
+
+
+
+
+
+
+
+
+

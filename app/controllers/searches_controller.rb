@@ -9,14 +9,28 @@ class SearchesController < ApplicationController
     private
     def search_for(model, content, method)
         if model == "user" #選択したモデルがUserだった場合
+        
         　if method == "perfect" #完全一致なら
         　  User.where(name: content)
-        　elsif #前方一致なら
-        　  User.where("name LIKE ?", "%"+content+"%")
-        　elsif #広報一致なら
+        　elsif method == forward  #前方一致なら
+        　  
+        　elsif method == backward #後方一致なら
         　
         　else #部分一致なら
-        　 
+        　 User.where("name LIKE ?", "%"+content+"%")
         　end
+        　
+        elsif model == "book" #選択したモデルがBookの場合
+          if method == "perfect" #完全一致なら
+            Book.where(title: content)
+          elsif method == forward  #前方一致なら
+            
+          elsif method == backward #後方一致なら
+            
+          else #部分一致なら
+             Book.where("title LIKE ?", "%"+content+"%")
+          end
+
+        end
     end
 end
